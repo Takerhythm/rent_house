@@ -83,7 +83,7 @@
     var map = new AMap.Map("container", {
         resizeEnable: true,
         zoomEnable: true,
-        center: [114.07, 22.62],
+        center: [113.90, 35.30],
         zoom: 11
     });
     var scale = new AMap.Scale();
@@ -118,6 +118,7 @@
 
     function importRentInfo(fileInfo) {
         var file = fileInfo.files[0].name;
+        console.log(file)
         loadRentLocationByFile(file);
     }
 
@@ -160,7 +161,7 @@
 
     function addMarkerByAddress(address) {
         var geocoder = new AMap.Geocoder({
-            city: "深圳",
+            city: "新乡",
             radius: 1000
         });
         geocoder.getLocation(address, function(status, result) {
@@ -174,7 +175,7 @@
                 });
                 rentMarkerArray.push(rentMarker);
 
-                rentMarker.content = "<div>房源：<a target = '_blank' href='http://sz.lianjia.com/zufang/?sug=" + address + "'>" + address + "</a><div>"
+                rentMarker.content = "<div>房源：<a target = '_blank' href='http://xinxiang.lianjia.com/zufang/rs" + address + "'>" + address + "</a><div>"
                 rentMarker.on('click', function(e) {
                     infoWindow.setContent(e.target.content);
                     infoWindow.open(map, e.target.getPosition());
@@ -182,7 +183,7 @@
                     amapTransfer = new AMap.Transfer({
                         map: map,
                         policy: AMap.TransferPolicy.LEAST_TIME,
-                        city: "深圳市",
+                        city: "新乡市",
                         panel: 'transfer-panel'
                     });
                     amapTransfer.search([{
@@ -209,7 +210,7 @@
     function loadWorkLocation() {
         delWorkLocation();
         var geocoder = new AMap.Geocoder({
-            city: "深圳",
+            city: "新乡",
             radius: 1000
         });
 
@@ -226,12 +227,14 @@
     }
 
     function loadRentLocationByFile(fileName) {
+        console.log(fileName,'wenjianming')
         delRentLocation();
         var rent_locations = new Set();
         $.get(fileName, function(data) {
             data = data.split("\n");
             data.forEach(function(item, index) {
-                rent_locations.add(item.split(",")[0]);
+                console.log(item)
+                rent_locations.add(item.split(",")[1]);
             });
             rent_locations.forEach(function(element, index) {
                 addMarkerByAddress(element);

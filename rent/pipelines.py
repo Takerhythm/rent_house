@@ -8,7 +8,7 @@ from scrapy.exporters import CsvItemExporter
 
 class RentPipeline(object):
     def open_spider(self, spider):
-        self.file = open('lianjia.csv', 'wb')
+        self.file = open('../lianjia.csv', 'wb')
         self.writer = CsvItemExporter(self.file)
         self.writer.start_exporting()
 

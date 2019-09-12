@@ -7,8 +7,8 @@ import scrapy
 class RentHouseSpider(scrapy.Spider):
     name = 'rent_house'
     allowed_domains = ['lianjia.com']
-    base_url = r'https://app.api.lianjia.com/Rentplat/v1/house/list?city_id=440300&offset=%s&limit=30&scene=home'
-    start_urls = ['https://app.api.lianjia.com/Rentplat/v1/house/list?city_id=440300&offset=0&limit=30&scene=home']
+    base_url = r'https://app.api.lianjia.com/Rentplat/v1/house/list?city_id=410700&offset=%s&limit=30&scene=home'
+    start_urls = ['https://app.api.lianjia.com/Rentplat/v1/house/list?city_id=410700&offset=0&limit=30&scene=home']
     page = 0
     def parse(self, response):
         # with open('lianjia.json', 'wb') as f:
